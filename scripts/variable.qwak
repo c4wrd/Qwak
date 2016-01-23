@@ -1,0 +1,2 @@
+var x = "variable_string";
+var y = x
