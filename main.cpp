@@ -1,14 +1,20 @@
 #include <iostream>
+#include "Lexer.h"
+#include "Parser.h"
+#include "Tree.h"
+
 
 using namespace std;
 
 int main() {
-    Lexer l("scripts\\method.qwak");
-    l.buildTokens();
+    Qwak::Lexer l("method.qwak");
 
-    Parser p(l);
 
-    Tree root = p.buildParseTree();
 
+    //l.build_tokens();
+
+   /* Qwak::Parser p(l);
+
+    Qwak::Tree root = p.buildParseTree();*/
     return 0;
 }

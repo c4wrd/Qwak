@@ -40,7 +40,7 @@ namespace Qwak {
         TOKEN_KEYWORD(ADDITION_OP, "+")                         \
         TOKEN_KEYWORD(SUBTRACTION_OP, "-")                      \
         TOKEN_KEYWORD(MULTIPLICATION_OP, "*")                   \
-        TOKEN_KEYWORD(DIVISION_OP, "\")
+        TOKEN_KEYWORD(DIVISION_OP, "\"")
 
 
     // X Macro to quickly build our token_identifier enum values
@@ -92,7 +92,7 @@ namespace Qwak {
 
         const std::string& get_str();
         token_identifier getId() const;
-        location& get_location() const;
+        location& get_location();
 
         const std::string& get_token_description();
         const std::string& get_token_name_str();

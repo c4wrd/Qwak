@@ -75,12 +75,12 @@ namespace Qwak {
         return this->m_tokenId;
     }
 
-    location &Token::get_location() const {
+    location &Token::get_location() {
         return this->l_location;
     }
 
     const std::string &Token::get_token_description() {
-        return Qwak::get_token_description(this->m_tokenId)
+        return Qwak::get_token_description(this->m_tokenId);
     }
 
     const std::string &Token::get_token_name_str() {

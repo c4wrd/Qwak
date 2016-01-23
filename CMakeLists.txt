@@ -3,5 +3,6 @@ project(Qwak)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp Token.cpp Token.h location.h)
-add_executable(Qwak ${SOURCE_FILES})
+set(QWAK_FILES Token.cpp Token.h location.h Lexer.cpp Lexer.h Parser.cpp Parser.h Tree.cpp Tree.h)
+add_executable(Main main.cpp ${QWAK_FILES})
+add_executable(LexerTests tests/lexer/test_file_io.cpp ${QWAK_FILES})
