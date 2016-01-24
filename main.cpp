@@ -2,19 +2,21 @@
 #include "Lexer.h"
 #include "Parser.h"
 #include "Tree.h"
+#include "Token.h"
 
 
 using namespace std;
 
 int main() {
-    Qwak::Lexer l("method.qwak");
+    Qwak::Lexer l("scripts/method.qwak");
 
+    auto queue = l.get_token_queue();
 
-
-    //l.build_tokens();
-
-   /* Qwak::Parser p(l);
-
-    Qwak::Tree root = p.buildParseTree();*/
-    return 0;
+    while ( !queue.empty() ) {
+        Qwak::TokenPointer node = queue.front();
+        queue.pop();
+        cout << "[" << Qwak::get_token_as_string(node->getId()) << "]";
+        if (node->getId() == Qwak::token_identifier::NEW_LINE)
+            cout << endl;
+    }
 }

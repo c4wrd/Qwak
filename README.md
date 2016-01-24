@@ -10,7 +10,7 @@ Currently Qwak is a recursive descent parser, i.e. it goes from top to bottom. I
 
 Roadmap
 -------
- * Qwak Lexer *IN PROGRESS*
+ * Qwak Lexer --IN PROGRESS-- *Complete*
  * Implement our grammar in code
  * Implement analysis to verify input matches grammar
  * Create the program Tree and associated classes
@@ -18,6 +18,28 @@ Roadmap
  * Implement class to parse our token queue into a walkable Tree for interpretation
  * Create our interpreter
  * Never use this again!
+
+Lexer status
+------------
+The lexer is fully implemented and is tokenizing input streams correctly. 
+
+
+Here is an example output from the /scripts/method.qwak script:
+
+
+	["<first-token-marker>"]["func"]["IDENTIFIER"]["("][")"]["new_line"]
+	["IDENTIFIER"]["("]["string_literal"][")"]["new_line"]
+	["end"]["new_line"]
+	["new_line"]
+	["var"]["IDENTIFIER"]["="]["IDENTIFIER"]["new_line"]
+	["var"]["IDENTIFIER"]["="]["string_literal"]["new_line"]
+	["new_line"]
+	["if"]["IDENTIFIER"]["=="]["IDENTIFIER"]["then"]["new_line"]
+	["IDENTIFIER"]["("]["string_literal"][")"]["new_line"]
+	["end"]["<eof>"]["<last-token-marker"]
+
+Currently researching whether to maintain the new line split expressions, or
+to implement semi-colons (the original intended use).
 
 Potential Explorations
 ----------------------

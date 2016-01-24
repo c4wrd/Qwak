@@ -1,3 +1,10 @@
-func main()
-    print("hi")
+func method()
+    print("method_test")
+end
+
+var number = 12345
+var string = "test_string"
+
+if x == 2 then
+    print("nope!")
 end

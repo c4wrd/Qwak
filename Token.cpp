@@ -5,22 +5,23 @@
 #include "Token.h"
 
 namespace Qwak {
-
-#define TOKEN_KEYWORD(e, v)     \
+#define TOKEN_KEYWORD(e, v) TOKEN(e, v)
+#define TOKEN(e, v)     \
             case e:             \
                 return v;
 
     const char * get_token_description(token_identifier id) {
         switch(id) {
-            TOKEN_LIST;
+            TOKEN_LIST
             default:
                 return "invalid_token_id";
         }
     }
-
+#undef TOKEN
 #undef TOKEN_KEYWORD
 
-#define TOKEN_KEYWORD(e, v)     \
+#define TOKEN_KEYWORD(e, v) TOKEN(e, v)
+#define TOKEN(e, v)     \
     case e:                     \
         return #v;
 
@@ -29,9 +30,8 @@ namespace Qwak {
             TOKEN_LIST
         }
     }
-
+#undef TOKEN
 #undef TOKEN_KEYWORD
-
 
     TokenPointer Token::make_token(token_identifier identifier, location _loc) {
         return TokenPointer(new Token(identifier, _loc));
@@ -79,11 +79,11 @@ namespace Qwak {
         return this->l_location;
     }
 
-    const std::string &Token::get_token_description() {
+    const std::string& Token::get_token_description() {
         return Qwak::get_token_description(this->m_tokenId);
     }
 
-    const std::string &Token::get_token_name_str() {
+    const std::string& Token::get_token_name_str() {
         return Qwak::get_token_as_string(this->m_tokenId);
     }
 

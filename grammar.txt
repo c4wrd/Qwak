@@ -7,9 +7,9 @@ statement = method_decl*
                 | method_call*
                 | assignment_statement*
 
-            ) ";"
+            ) <new_line>
 
-primary = string
+primary =   string
           | integer
           | "(" expression ")"
           | expression
@@ -18,7 +18,7 @@ expression = primary
             | expression binop expression
             | unop expression
 
-binop =   "&" | "||"       % lowest priority
+binop =   "&" | "||" | "=="             % lowest priority
         | "<" | "<=" | ">" | ">=" | "!="
         | "+" | "-"
         | "*" | "/"                     % highest priority
@@ -35,4 +35,4 @@ method_call = identifier parameters
 
 assignment_statement = identifier "=" expression
 
-if_statement = "if" expression "then" statement* "endf"
+if_statement = "if" expression "then" statement* "end"

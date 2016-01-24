@@ -16,57 +16,67 @@ namespace Qwak {
  * TOKEN_KEYWORD(VALUE, description)
  */
 
-    #define TOKEN_LIST                                          \
-        TOKEN_KEYWORD(FIRST_TOKEN, "<first-token-marker>")      \
-        TOKEN_KEYWORD(END_OF_FILE, "<eof>")                     \
-        TOKEN_KEYWORD(LAST_TOKEN, "<last-token-marker")         \
-                                                                \
-        TOKEN_KEYWORD(IDENTIFIER, "IDENTIFIER")                 \
-        TOKEN_KEYWORD(STRING_LITERAL, "string literal")         \
-        TOKEN_KEYWORD(INTEGER, "integer literal")               \
-                                                                \
-        TOKEN_KEYWORD(SEMICOLON, ";")                           \
-        TOKEN_KEYWORD(LEFT_PAREN, "(")                          \
-        TOKEN_KEYWORD(RIGHT_PARAN, ")")                         \
-        TOKEN_KEYWORD(ASSIGNMENT_OP, "=")                       \
-                                                                \
-        TOKEN_KEYWORD(AND_OP, "&")                              \
-        TOKEN_KEYWORD(OR_OP, "||")                              \
-        TOKEN_KEYWORD(LESS_THAN, "<")                           \
-        TOKEN_KEYWORD(LESS_THAN_EQ, "<=")                       \
-        TOKEN_KEYWORD(GREATER_THAN, ">")                        \
-        TOKEN_KEYWORD(GREATER_THAN_EQ, ">=")                    \
-        TOKEN_KEYWORD(NOT_EQ, "!=")                             \
-        TOKEN_KEYWORD(ADDITION_OP, "+")                         \
-        TOKEN_KEYWORD(SUBTRACTION_OP, "-")                      \
-        TOKEN_KEYWORD(MULTIPLICATION_OP, "*")                   \
-        TOKEN_KEYWORD(DIVISION_OP, "\"")
+    #define TOKEN_LIST                                  \
+        TOKEN(FIRST_TOKEN, "<first-token-marker>")      \
+        TOKEN(END_OF_FILE, "<eof>")                     \
+        TOKEN(LAST_TOKEN, "<last-token-marker")         \
+        TOKEN(INVALID_TOKEN, "invalid token")           \
+                                                        \
+        TOKEN(IDENTIFIER, "IDENTIFIER")                 \
+        TOKEN(STRING_LITERAL, "string_literal")         \
+        TOKEN(INTEGER, "integer_literal")               \
+                                                        \
+        TOKEN(SEMICOLON, ";")                           \
+        TOKEN(LEFT_PAREN, "(")                          \
+        TOKEN(RIGHT_PARAN, ")")                         \
+        TOKEN(ASSIGNMENT_OP, "=")                       \
+        TOKEN(NEW_LINE, "new_line")                     \
+        TOKEN(QUOTE, "\"")                              \
+                                                        \
+        TOKEN(EQUALITY_OP, "==")                        \
+        TOKEN(AND_OP, "&")                              \
+        TOKEN(OR_OP, "||")                              \
+        TOKEN(LESS_THAN, "<")                           \
+        TOKEN(LESS_THAN_EQ, "<=")                       \
+        TOKEN(GREATER_THAN, ">")                        \
+        TOKEN(GREATER_THAN_EQ, ">=")                    \
+        TOKEN(NOT_EQ, "!=")                             \
+        TOKEN(ADDITION_OP, "+")                         \
+        TOKEN(SUBTRACTION_OP, "-")                      \
+        TOKEN(MULTIPLICATION_OP, "*")                   \
+        TOKEN(DIVISION_OP, "\"")                        \
+                                                        \
+        TOKEN_KEYWORD(VAR_DECL, "var")                  \
+        TOKEN_KEYWORD(FUNC_DECL, "func")                \
+        TOKEN_KEYWORD(END, "end")                       \
+        TOKEN_KEYWORD(IF, "if")                         \
+        TOKEN_KEYWORD(THEN, "then")
 
 
     // X Macro to quickly build our token_identifier enum values
 
     enum token_identifier {
-    #define TOKEN_ENUM(enum_val, _) enum_val,
-    #define TOKEN_KEYWORD(e, v) TOKEN_ENUM(e, v)
-        TOKEN_LIST
-    #undef TOKEN_KEYWORD
-    #undef TOKEN_ENUM
+#define TOKEN(ENUM, _) ENUM,
+#define TOKEN_KEYWORD(ENUM, _) ENUM,
+    TOKEN_LIST
+#undef TOKEN_KEYWORD
+#undef TOKEN
     };
 
-    const char * get_token_description(token_identifier id);
-    const char * get_token_as_string(token_identifier id);
+    const char * get_token_description(const token_identifier id);
+    const char * get_token_as_string(const token_identifier id);
 
     class Token;
     typedef std::shared_ptr<const Token> TokenPointer;
     typedef std::shared_ptr<const Token> const_TokenPointer;
 
     class Token {
-        token_identifier m_tokenId;
+        const token_identifier m_tokenId;
         location l_location;
         std::string m_buffer;
 
         Token(token_identifier id, location loc) : \
-        m_tokenId(id), l_location(loc), m_buffer(0) {};
+        m_tokenId(id), l_location(loc) {};
 
         Token(token_identifier id, location loc, const std::string& string_val) : \
         m_tokenId(id), l_location(loc), m_buffer(string_val) {};
