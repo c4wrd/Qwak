@@ -17,7 +17,7 @@ namespace Qwak {
             this->build_tokens();
         }
         else {
-            throw STDIN_FILENO;
+            throw FILE_NOT_FOUND;
         }
     }
 
@@ -257,7 +257,7 @@ namespace Qwak {
 
                 if (current_char == '\n')
                 {
-                    throw ERROR_UNENDED_STRING_LITERAL;
+                    throw ERROR_NON_TERMINATED_STRING;
                 }
 
                 if (current_char == '"')
