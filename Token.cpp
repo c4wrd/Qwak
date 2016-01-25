@@ -60,22 +60,22 @@ namespace Qwak {
     TokenPointer Token::create_integer(location _loc, const std::string &int_string) {
         return TokenPointer(
                 new Token(
-                        token_identifier::IDENTIFIER,
+                        token_identifier::INTEGER,
                         _loc,
                         int_string
                 )
         );
     }
 
-    const std::string &Token::get_str() {
+    const std::string& Token::get_str() const {
         return this->m_buffer;
     }
 
-    token_identifier Token::getId() const {
+    const token_identifier& Token::getId() const {
         return this->m_tokenId;
     }
 
-    location &Token::get_location() {
+    const location& Token::get_location() const {
         return this->l_location;
     }
 

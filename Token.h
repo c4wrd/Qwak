@@ -72,8 +72,8 @@ namespace Qwak {
 
     class Token {
         const token_identifier m_tokenId;
-        location l_location;
-        std::string m_buffer;
+        const location l_location;
+        const std::string m_buffer;
 
         Token(token_identifier id, location loc) : \
         m_tokenId(id), l_location(loc) {};
@@ -100,9 +100,9 @@ namespace Qwak {
         static TokenPointer
         create_integer (location _loc, const std::string &int_string);
 
-        const std::string& get_str();
-        token_identifier getId() const;
-        location& get_location();
+        const std::string& get_str() const;
+        const token_identifier& getId() const;
+        const location& get_location() const;
 
         const std::string& get_token_description();
         const std::string& get_token_name_str();
